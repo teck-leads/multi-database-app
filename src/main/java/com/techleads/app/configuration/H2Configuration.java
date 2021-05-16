@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaRepositories(
 		entityManagerFactoryRef = "h2LocalContainerEntityManagerFactoryBean",
 		transactionManagerRef = "h2PlatformTransactionManager",
-				basePackages = {"com.techleads.app.repository"})
+				basePackages = {"com.techleads.app.repository.h2"})
 public class H2Configuration {
 	
 	// dataSource
@@ -39,7 +39,7 @@ public class H2Configuration {
 				EntityManagerFactoryBuilder emfb) {
 
 			Map<String, Object> properties = new HashMap<>();
-//			properties.put("hibernate.hbm2ddl.auto", "create");
+			properties.put("hibernate.hbm2ddl.auto", "update");
 			properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
 			return emfb.dataSource(h2DataSource()).packages("com.techleads.app.model").properties(properties).build();
 

@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaRepositories(
 		entityManagerFactoryRef = "oracleLocalContainerEntityManagerFactoryBean",
 		transactionManagerRef = "oraclePlatformTransactionManager",
-		basePackages = {"com.techleads.app.repository"})
+		basePackages = {"com.techleads.app.repository.ora"})
 public class OracleConfiguration {
 	// dataSource
 	@Bean

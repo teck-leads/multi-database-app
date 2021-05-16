@@ -5,17 +5,25 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.techleads.app.model.Users;
-import com.techleads.app.repository.UserRepository;
+import com.techleads.app.repository.h2.H2UserRepository;
+import com.techleads.app.repository.ora.OraUserRepository;
+
 @Component
 public class UserRunner implements CommandLineRunner {
 
-	private UserRepository userRepository;
-
+	private OraUserRepository oraUserRepository;
+	private H2UserRepository h2UserRepository;
 	@Autowired
-	public UserRunner(UserRepository userRepository) {
-		this.userRepository = userRepository;
+	public UserRunner(OraUserRepository oraUserRepository, H2UserRepository h2UserRepository) {
+		this.h2UserRepository = h2UserRepository;
+		this.oraUserRepository = oraUserRepository;
 	}
 
+	
+	
+	
+	
+	
 	@Override
 	public void run(String... args) throws Exception {
 		
@@ -24,8 +32,10 @@ public class UserRunner implements CommandLineRunner {
 		user.setName("MultiDbUser");
 		user.setLocation("Hyderabad");
 		user.setRole("DBAdmin");
-		userRepository.save(user);
-		System.out.println("saved");
+		oraUserRepository.save(user);
+		System.out.println("saved ora");
+		h2UserRepository.save(user);
+		System.out.println("saved h2");
 
 	}
 
